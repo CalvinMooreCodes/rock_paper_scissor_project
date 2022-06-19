@@ -15,6 +15,7 @@ function playerPlay() {
     let playerChoice = prompt('choose between rock, paper and scissor');
 
     //making playerChoice non-case sensitive
+    playerChoice = playerChoice.toLowerCase();
     let capitalLetter = playerChoice.charAt(0).toUpperCase();
     let stringRemainder = playerChoice.slice(1);
     playerChoice = capitalLetter.concat(stringRemainder); 
@@ -23,5 +24,7 @@ function playerPlay() {
         alert("You didnt choose between rock, paper and scissor, try again.");
         playerChoice = "";
         return
-    }
+    } console.log(playerChoice);
 }
+
+playerPlay();
