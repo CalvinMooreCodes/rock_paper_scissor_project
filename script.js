@@ -1,30 +1,83 @@
+let computerSelection = computerPlay();
+let playerSelection = playerPlay();
+
+
+// computer chooses one of following string values randomly : Rock, Paper, Scissor. 
 function computerPlay() {
-    let randomNumber = Math.random();
-    let computerChoice;
+    let computerSelection;
+ 
+       let randomNumber = Math.random();
 
-    if(randomNumber <= 0.33) {
-        computerChoice = 'rock';
-    } else if(randomNumber <= 0.66) {
-        computerChoice = 'paper';
-    } else {
-        computerChoice = 'scissor';
-    }
+       if(randomNumber <= 0.34) {
+           computerSelection = "Rock";
+       } else if(randomNumber <= 0.67) {
+           computerSelection = "Paper";
+       } else {
+           computerSelection = "Scissor";
+       } 
+       console.log(computerSelection);
+       return computerSelection;
 }
 
+// player inputs his chosen choice through using the prompt box.
 function playerPlay() {
-    let playerChoice = prompt('choose between rock, paper and scissor');
+    let playerSelection;
 
-    //making playerChoice non-case sensitive
-    playerChoice = playerChoice.toLowerCase();
-    let capitalLetter = playerChoice.charAt(0).toUpperCase();
-    let stringRemainder = playerChoice.slice(1);
-    playerChoice = capitalLetter.concat(stringRemainder); 
-
-    if(playerChoice !== "Rock" && playerChoice !== "Paper" && playerChoice !== "Scissor") {
-        alert("You didnt choose between rock, paper and scissor, try again.");
-        playerChoice = "";
-        return
-    } console.log(playerChoice);
+    let userInput = prompt('Rock, Paper or Scissor?');
+    // user input is case insensitive
+    userInput = userInput.toLowerCase();
+    let str1 = userInput.charAt(0).toUpperCase(); 
+    let str2 = userInput.slice(1);
+    playerSelection = str1.concat(str2);
+    console.log(playerSelection);
+    return playerSelection;
 }
 
-playerPlay();
+//compares both player and computer choice and returns a winner
+function compareSelections(playerSelection, computerSelection) {
+
+    let winnerRound;
+
+    // all tie scenarios
+    if(playerSelection === computerSelection) {
+        winnerRound = "It's a tie! nobody won"; 
+        console.log(winnerRound);
+       return winnerRound; 
+    } 
+    // all player wins scenarios
+    else if(playerSelection == "Rock" && computerSelection == "Scissor") {
+        winnerRound = `Player won! ${playerSelection} beats ${computerSelection}.`;
+        console.log(winnerRound);
+       return winnerRound; 
+    } else if(playerSelection == "Paper" && computerSelection == "Rock") {
+        winnerRound = `Player won! ${playerSelection} beats ${computerSelection}.`;
+        console.log(winnerRound);
+        return winnerRound;
+    } else if(playerSelection == "Scissor" && computerSelection == "Paper") {
+        winnerRound = `Player won! ${playerSelection} beats ${computerSelection}.`;
+        console.log(winnerRound);
+        return winnerRound;
+    } 
+    // all computer wins scenarios
+    else if(playerSelection == "Scissor" && computerSelection == "Rock") {
+        winnerRound = `Computer won! ${computerSelection} beats ${playerSelection}.`;
+        console.log(winnerRound);
+       return winnerRound; 
+    } else if(playerSelection == "Rock" && computerSelection == "Paper") {
+        winnerRound = `Computer won! ${computerSelection} beats ${playerSelection}.`;
+        console.log(winnerRound);
+        return winnerRound;
+    } else if(playerSelection == "Paper" && computerSelection == "Scissor") {
+       winnerRound = `Computer won! ${computerSelection} beats ${playerSelection}.`;
+       console.log(winnerRound);
+       return winnerRound;
+    }
+    
+}
+
+function playRound() {
+    compareSelections(playerSelection, computerSelection);
+    console.log(winnerRound);
+}
+
+playRound();
