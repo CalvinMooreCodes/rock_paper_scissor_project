@@ -1,6 +1,3 @@
-let computerSelection = computerPlay();
-let playerSelection = playerPlay();
-
 
 // computer chooses one of following string values randomly : Rock, Paper, Scissor. 
 function computerPlay() {
@@ -34,9 +31,12 @@ function playerPlay() {
 }
 
 //compares both player and computer choice and returns a winner
-function compareSelections(playerSelection, computerSelection) {
+function compareSelections() {
 
+    const playerSelection = playerPlay();
+    const computerSelection = computerPlay();
     let winnerRound;
+
 
     // all tie scenarios
     if(playerSelection === computerSelection) {
@@ -75,9 +75,16 @@ function compareSelections(playerSelection, computerSelection) {
     
 }
 
+//plays one single round 
 function playRound() {
-    compareSelections(playerSelection, computerSelection);
-    console.log(winnerRound);
+    compareSelections();
 }
 
-playRound();
+//plays 5 rounds
+function game() {
+    for(i = 0; i< 5; i++) {
+        playRound();
+    }
+}
+
+game();
