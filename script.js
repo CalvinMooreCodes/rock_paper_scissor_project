@@ -1,78 +1,89 @@
 
+const rockBtn = document.createElement('button');
+const paperBtn = document.createElement('button');
+const scissorBtn = document.createElement('button');
+const div = document.createElement('div');
+
+const body = document.querySelector('body');
+
+
+body.appendChild(rockBtn);
+body.appendChild(paperBtn);
+body.appendChild(scissorBtn);
+body.appendChild(div);
+
+rockBtn.addEventListener('click', () => {
+    playerSelection = 'Rock';
+    computerPlay();
+    playRound();
+    div.textContent = compareSelections();
+});
+
+paperBtn.addEventListener('click', () => {
+    playerSelection = 'Paper';
+    computerPlay();
+    playRound();
+    div.textContent = compareSelections();
+});
+
+scissorBtn.addEventListener('click', () => {
+    playerSelection = 'Scissor';
+    computerPlay();
+    playRound();
+    div.textContent = compareSelections();
+});
+
+
+
+
 // computer chooses one of following string values randomly : Rock, Paper, Scissor. 
 function computerPlay() {
-    let computerSelection;
- 
-       let randomNumber = Math.random();
+    
+    let randomNumber = Math.random();
 
-       if(randomNumber <= 0.34) {
-           computerSelection = "Rock";
-       } else if(randomNumber <= 0.67) {
-           computerSelection = "Paper";
-       } else {
-           computerSelection = "Scissor";
-       } 
-       console.log(computerSelection);
-       return computerSelection;
-}
-
-// player inputs his chosen choice through using the prompt box.
-function playerPlay() {
-    let playerSelection;
-
-    let userInput = prompt('Rock, Paper or Scissor?');
-    // user input is case insensitive
-    userInput = userInput.toLowerCase();
-    let str1 = userInput.charAt(0).toUpperCase(); 
-    let str2 = userInput.slice(1);
-    playerSelection = str1.concat(str2);
-    console.log(playerSelection);
-    return playerSelection;
+    if(randomNumber <= 0.34) {
+        computerSelection = "Rock";
+    } else if(randomNumber <= 0.67) {
+        computerSelection = "Paper";
+    } else {
+        computerSelection = "Scissor";
+    } 
+    return computerSelection;
 }
 
 //compares both player and computer choice and returns a winner
 function compareSelections() {
 
-    const playerSelection = playerPlay();
-    const computerSelection = computerPlay();
     let winnerRound;
 
 
     // all tie scenarios
     if(playerSelection === computerSelection) {
         winnerRound = "It's a tie! nobody won"; 
-        console.log(winnerRound);
        return winnerRound; 
     } 
     // all player wins scenarios
     else if(playerSelection == "Rock" && computerSelection == "Scissor") {
         winnerRound = `Player won! ${playerSelection} beats ${computerSelection}.`;
-        console.log(winnerRound);
        return winnerRound; 
     } else if(playerSelection == "Paper" && computerSelection == "Rock") {
         winnerRound = `Player won! ${playerSelection} beats ${computerSelection}.`;
-        console.log(winnerRound);
         return winnerRound;
     } else if(playerSelection == "Scissor" && computerSelection == "Paper") {
         winnerRound = `Player won! ${playerSelection} beats ${computerSelection}.`;
-        console.log(winnerRound);
         return winnerRound;
     } 
     // all computer wins scenarios
     else if(playerSelection == "Scissor" && computerSelection == "Rock") {
         winnerRound = `Computer won! ${computerSelection} beats ${playerSelection}.`;
-        console.log(winnerRound);
        return winnerRound; 
     } else if(playerSelection == "Rock" && computerSelection == "Paper") {
         winnerRound = `Computer won! ${computerSelection} beats ${playerSelection}.`;
-        console.log(winnerRound);
         return winnerRound;
     } else if(playerSelection == "Paper" && computerSelection == "Scissor") {
        winnerRound = `Computer won! ${computerSelection} beats ${playerSelection}.`;
-       console.log(winnerRound);
        return winnerRound;
     }
-    
 }
 
 //plays one single round 
@@ -80,11 +91,10 @@ function playRound() {
     compareSelections();
 }
 
-//plays 5 rounds
-function game() {
-    for(i = 0; i< 5; i++) {
-        playRound();
-    }
-}
+// //plays 5 rounds
+// function game() {
+//     for(i = 0; i< 5; i++) {
+//         playRound();
+//     }
+// }
 
-game();
