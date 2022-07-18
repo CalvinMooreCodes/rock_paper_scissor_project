@@ -1,6 +1,11 @@
 let playerScore = 0;
 let computerScore = 0;
 
+const staticText = document.createElement('div');
+staticText.setAttribute('style', 'white-space: pre;');
+staticText.textContent = 'Welcome to this Rock Paper Scissor game! First to 5 wins the game!\r\n';
+staticText.textContent += 'What are you waiting for ? Make a choice !';
+
 const rockBtn = document.createElement('button');
 const paperBtn = document.createElement('button');
 const scissorBtn = document.createElement('button');
@@ -9,16 +14,24 @@ const divComputerChoice = document.createElement('div');
 const divResult = document.createElement('div');
 const divScore = document.createElement('div');
 
-const body = document.querySelector('body');
+divPlayerChoice.classList.add('textPlayerMove');
+divComputerChoice.classList.add('textComputerMove');
+divResult.classList.add('textWinnerAnnounce');
+divScore.classList.add('scoreboard');
+
+const welcomeText = document.querySelector('.welcomeText');
+const buttonsBox = document.querySelector('.buttonsBox');
+const textContainer = document.querySelector('.textContainer');
 
 
-body.appendChild(rockBtn);
-body.appendChild(paperBtn);
-body.appendChild(scissorBtn);
-body.appendChild(divPlayerChoice);
-body.appendChild(divComputerChoice);
-body.appendChild(divResult);
-body.appendChild(divScore);
+welcomeText.appendChild(staticText);
+buttonsBox.appendChild(rockBtn);
+buttonsBox.appendChild(paperBtn);
+buttonsBox.appendChild(scissorBtn);
+textContainer.appendChild(divPlayerChoice);
+textContainer.appendChild(divComputerChoice);
+textContainer.appendChild(divResult);
+textContainer.appendChild(divScore);
 
 rockBtn.addEventListener('click', () => {
     playerSelection = 'Rock';
