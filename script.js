@@ -6,16 +6,13 @@ staticText.setAttribute('style', 'white-space: pre;');
 staticText.textContent = 'Welcome to this Rock Paper Scissor game! First to 5 wins the game!\r\n';
 staticText.textContent += 'What are you waiting for ? Make a choice !';
 
-const rockBtn = document.createElement('button');
-const paperBtn = document.createElement('button');
-const scissorBtn = document.createElement('button');
-const divPlayerChoice = document.createElement('div');
-const divComputerChoice = document.createElement('div');
+const rockBtn = document.querySelector('.rockBtn');
+const paperBtn = document.querySelector('.paperBtn');
+const scissorBtn = document.querySelector('.scissorBtn');
 const divResult = document.createElement('div');
+
 const divScore = document.createElement('div');
 
-divPlayerChoice.classList.add('textPlayerMove');
-divComputerChoice.classList.add('textComputerMove');
 divResult.classList.add('textWinnerAnnounce');
 divScore.classList.add('scoreboard');
 
@@ -25,19 +22,12 @@ const textContainer = document.querySelector('.textContainer');
 
 
 welcomeText.appendChild(staticText);
-buttonsBox.appendChild(rockBtn);
-buttonsBox.appendChild(paperBtn);
-buttonsBox.appendChild(scissorBtn);
-textContainer.appendChild(divPlayerChoice);
-textContainer.appendChild(divComputerChoice);
 textContainer.appendChild(divResult);
 textContainer.appendChild(divScore);
 
 rockBtn.addEventListener('click', () => {
     playerSelection = 'Rock';
     computerPlay();
-    divPlayerChoice.textContent = `Player chose ${playerSelection}`;
-    divComputerChoice.textContent = `Computer chose ${computerSelection}`;
     divResult.textContent = compareSelections();
     divScore.textContent = `Player ${playerScore} : ${computerScore} Computer`;
     checkForWinner();
@@ -46,8 +36,6 @@ rockBtn.addEventListener('click', () => {
 paperBtn.addEventListener('click', () => {
     playerSelection = 'Paper';
     computerPlay();
-    divPlayerChoice.textContent = `Player chose ${playerSelection}`;
-    divComputerChoice.textContent = `Computer chose ${computerSelection}`;
     divResult.textContent = compareSelections();
     divScore.textContent = `Player ${playerScore} : ${computerScore} Computer`;
     checkForWinner();
@@ -56,8 +44,6 @@ paperBtn.addEventListener('click', () => {
 scissorBtn.addEventListener('click', () => {
     playerSelection = 'Scissor';
     computerPlay();
-    divPlayerChoice.textContent = `Player chose ${playerSelection}`;
-    divComputerChoice.textContent = `Computer chose ${computerSelection}`;
     divResult.textContent = compareSelections();
     divScore.textContent = `Player ${playerScore} : ${computerScore} Computer`;
     checkForWinner();
@@ -121,7 +107,16 @@ function compareSelections() {
 function checkForWinner() {
     if(playerScore === 5) {
         alert('Player was first to reach 5 round wins so he won the game!');
+        resetGame();
+        divScore.textContent = `Player ${playerScore} : ${computerScore} Computer`;
     } else if(computerScore === 5) {
         alert('Computer was first to reach 5 round wins so he won the game!');
+        resetGame();
+        divScore.textContent = `Player ${playerScore} : ${computerScore} Computer`;
     }
+}
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
 }
